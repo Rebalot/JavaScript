@@ -1,0 +1,129 @@
+body{
+    min-height: 100vh;
+    min-height: 100vw;
+}
+.seleccion_contenedor{
+    display: flex;
+    flex-direction: column;
+}
+#selector{
+    width: 100px;
+    margin-top: 10px;
+}
+#seleccionar{
+    margin-top: 20px;
+}
+#seccion_extra{
+    border-top: 1px solid;
+    margin-top: 50px;
+}
+.title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#confirmarTopping{
+    margin-top: 15px;
+}
+.seleccion_contenedor.opciones{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    gap: 10px;
+    flex-direction: row;
+}
+#confirmarToppingElegido{
+    margin-left: 30px;
+}
+.inputTexto{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.inputTexto p{
+    margin: 0;
+    font-size: 12px;
+}
+.inputTexto.kilometro{
+    gap: 10px;
+}
+
+.parrafo.total{
+    margin-top: 10px;
+}
+.parrafo.total span{
+    color: red;
+}
+
+.selector{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.selector p{
+    margin: 0;
+}
+.contenedor_allInputs{
+    display: flex;
+    gap: 10px;
+    position: relative;
+    align-items: flex-end;
+    height: 30px;
+}
+.contenedor_inputIcon{
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+    height: fit-content;
+}
+.contenedor_icono{
+    display: flex;
+    align-items: center;
+}
+.infoPrograma{
+    border: 1px solid;
+    position: absolute;
+    display: none;
+    background-color: grey;
+    color: white;
+    padding: 3px;
+    box-sizing: border-box;
+    z-index: 999;
+}
+.infoPrograma p{
+    margin: 4px;
+}
+.contenedor_inputIcon:nth-child(1) .infoPrograma {
+    left: 92px;
+    bottom: 17px;
+}
+.contenedor_inputIcon:nth-child(2) .infoPrograma {
+    left: 197px;
+    bottom: 17px;
+}
+.contenedor_inputIcon:nth-child(3) .infoPrograma {
+    left: 301px;
+    bottom: 17px;
+}
+.contenedor_inputIcon.vehiculos:nth-child(1) .infoPrograma {
+    left: 89px;
+    bottom: 17px;
+}
+.contenedor_inputIcon.vehiculos:nth-child(2) .infoPrograma {
+    left: 182px;
+    bottom: 17px;
+}
+.contenedor_inputIcon.vehiculos:nth-child(3) .infoPrograma {
+    left: 292px;
+    bottom: 17px;
+}
+.contenedor_icono:hover + .infoPrograma{
+    display: block;
+}
+.contenedor_icono:hover{
+    background-color: rgb(204, 204, 204);
+}
+.botonesConfirmar{
+    margin-top: 15px;
+    width: fit-content;
+}

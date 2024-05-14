@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condicionales</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="stiles.css">
+</head>
+<body>
+    <header>
+        <h1>MODULO 2 - EJERCICIO 1</h1>
+    </header>
+    
+    <div class="seleccion_contenedor">
+    <label for="selector">Selecciona un número de ejercicio:</label>
+    <select id="selector">
+    <option value="opcion1">Ejercicio 1</option>
+    <option value="opcion2">Ejercicio 2</option>
+    <option value="opcion3">Ejercicio 3</option>
+    <option value="opcion4">Ejercicio 4</option>
+    <option value="opcion5">Ejercicio 5</option>
+    <option value="opcion6">Ejercicio 6</option>
+    <option value="opcion7">Ejercicio 7</option>
+    <option value="opcion8">Ejercicio 8</option>
+    <option value="opcion9">Ejercicio 9</option>
+    <option value="opcion10">Ejercicio 10</option>
+    <option value="opcion11">Ejercicio 11</option>
+    </select>
+    </div>
+    <button id="seleccionar">Seleccionar ejercicio</button>
+    <div id="seccion_extra">
+        <div class="title">
+        <h3>Seccion Extra</h3>
+        <p>Solo aplicable con Ejercicio 9, 10, 11 (Al finalizar el programa, pasados 10seg, se reseteara)</p>
+        </div>
+
+        <div class="parrafo">
+        </div>
+        <div class="Ejercicio9">
+            <div id="selector_topping" class="selector" style="display: none;">
+                <p>Deseas agregar un topping?</p>
+                <div class="contenedor_allInputs">
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="conTopping" name="Topping" value="conTopping">
+                        <label for="conTopping">
+                            Si
+                        </label>
+                    </div>
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="sinTopping" name="Topping" value="sinTopping">
+                        <label for="sinTopping">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <button id="confirmarTopping" class="botonesConfirmar">Confirmar</button>
+            </div>
+
+            <div class="seleccion_contenedor toppings opciones" style="display: none;">
+                <label for="toppings">Elige el topping que te gustaría añadir:</label>
+                <select id="toppings">
+                <option value="topping1">Oreo +$10</option>
+                <option value="topping2">KitKat +$15</option>
+                <option value="topping3">Brownie +$20</option>
+                <option value="topping4">Otro</option>
+                </select>
+                <button id="confirmarToppingElegido">Confirmar</button>
+            </div>
+
+            <div class="inputTexto topping" style="display: none;">
+                <label for="inputTopping">Qué topping te gustaría añadir?</label>
+                <input type="text" id="inputTopping" placeholder="Buscar">
+                <p>("Enter" para confirmar)</p>
+            </div>
+        </div>
+        <div class="Ejercicio10">
+            <div id="selector_programa" class="selector" style="display: none;">
+                <p>A cuál programa te interesaría inscribirte?</p>
+                <div class="contenedor_allInputs">
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="course" name="programas" value="course">
+                        <label for="course">
+                            Course
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Este programa tiene un costo mensual de $4999 MXN. Duración de 2 meses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="carrera" name="programas" value="carrera">
+                        <label for="carrera">
+                            Carrera
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Este programa tiene un costo mensual de $3999 MXN. Duración de 6 meses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="master" name="programas" value="master">
+                        <label for="master">
+                            Master
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Este programa tiene un costo mensual de $2999 MXN. Duración de 12 meses</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="confirmarPrograma" class="botonesConfirmar">Confirmar</button>
+            </div>
+
+            <div id="selector_beca" class="selector" style="display: none;">
+                <p>Cuentas con una beca?</p>
+                <div class="contenedor_allInputs">
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="siBeca" name="beca" value="siBeca">
+                        <label for="course">
+                            Si
+                        </label>
+                    </div>
+                    <div class="contenedor_inputIcon">
+                        <input type="radio" id="noBeca" name="beca" value="noBeca">
+                        <label for="carrera">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <button id="confirmarBeca" class="botonesConfirmar">Confirmar</button>
+            </div>
+            <div class="seleccion_contenedor becas opciones" style="display: none;">
+                <label for="becas">Cuál de estas becas tienes?:</label>
+                <select id="becas">
+                <option value="opcion1">---</option>
+                <option value="opcion2">Beca Facebook</option>
+                <option value="opcion3">Beca Google</option>
+                <option value="opcion4">Beca Jesua</option>
+                </select>
+                <button id="confirmarBecaElegida">Confirmar</button>
+            </div>
+        </div>
+        <div class="Ejercicio11">
+            <div id="selector_vehiculo" class="selector" style="display: none;">
+                <p>1. Qué tipo de vehículo tienes?</p>
+                <div class="contenedor_allInputs">
+                    <div class="contenedor_inputIcon vehiculos">
+                        <input type="radio" id="coche" name="vehiculos" value="coche">
+                        <label for="coche">
+                            Coche
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Precio kilómetro: $0.20</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor_inputIcon vehiculos">
+                        <input type="radio" id="moto" name="vehiculos" value="moto">
+                        <label for="moto">
+                            Moto
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Precio kilómetro: $0.10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor_inputIcon vehiculos">
+                        <input type="radio" id="autobus" name="vehiculos" value="autobus">
+                        <label for="autobus">
+                            Autobús
+                        </label>
+                        <div class="contenedor_icono">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                            </svg>
+                        </div>
+                        <div class="infoPrograma">
+                            <p>Precio kilómetro: $0.50</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="confirmarVehiculo" class="botonesConfirmar">Confirmar</button>
+            </div>
+            <div class="inputTexto kilometro" style="display: none;">
+                <div class="inputP">
+                    <label for="inputKilometro">Cuántos kilómetros recorriste?:</label>
+                    <input type="text" id="inputKilometro" placeholder="Enter para confirmar">
+                </div>
+                <button id="confirmarKmRecorrido">Confirmar</button>
+            </div>
+        </div>
+        <div class="parrafo total">
+        </div>
+    </div>
+</body>
+</html>
