@@ -1,0 +1,311 @@
+@font-face {
+    font-family: 'Fuente1';
+    src: url('fonts/Poetsen_One/PoetsenOne-Regular.ttf') format('truetype');
+    /* Agrega más formatos según sea necesario, como .ttf, .otf, etc. */
+}
+@font-face {
+    font-family: 'Fuente2';
+    src: url('fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype');
+    /* Agrega más formatos según sea necesario, como .ttf, .otf, etc. */
+}
+@font-face {
+    font-family: 'Fuente3';
+    src: url('fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+    /* Agrega más formatos según sea necesario, como .ttf, .otf, etc. */
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+}
+nav{
+    width: 100vw;
+    height: 60px;
+    background-color: rgb(84, 211, 169);
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Fuente1', sans-serif;
+}
+.botones_nav{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.botones_nav button{
+    background-color: rgb(50, 190, 144);
+    border-radius: 10px;
+    height: 100%;
+    border: 0px;
+    font-size: 20px;
+    padding: 10px;
+    font-family: 'Fuente1', sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    
+    color: white;
+    font-size: 20px;
+    
+}
+.logo_img{
+    height: 100%;
+    padding: 13px;
+}
+.logo_img img{
+    max-height: 100%;
+}
+main{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.contenido_general{
+    width: 80%;
+}
+h1{
+    font-family: 'Fuente1', sans-serif;
+    font-size: 40px;
+    background-image: linear-gradient(to bottom, #34a177, #53c599);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, rgb(28, 143, 137), transparent); /* Gradiente como borde */
+    border-image-slice: 1;
+}
+.vendedor{
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+}
+.vendedor_logo{
+    background-color: #53c599;
+    border-radius: 50%;
+    height: 100%;
+}
+.dialogo{
+    position: fixed;
+    display: none;
+    height: 160px;
+    width: 200px;
+    bottom: 75px;
+    right: 125px;
+    z-index: 999;
+}
+.dialogo_contenedor{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(images/bubble.png);
+    padding: 15px 15px 0 35px;
+}
+.dialogo_contenedor p{
+    font-family: 'Fuente2', sans-serif;
+    font-weight: 500;
+}
+.latin_dialogo{
+    color: rgb(32, 153, 113);
+}
+.vendedor:hover + .dialogo{
+    display: block;
+}
+
+.productos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+    margin-top: 30px;
+    column-gap: 30px;
+    row-gap: 30px;
+    justify-items: center;
+}
+.producto_contenedor{
+    width: 288px;
+    height: 448px;
+}
+.producto_img{
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.producto_img img{
+    width: 100%;
+    height: 100%;
+}
+.producto_info{
+    font-family: 'Fuente3', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+.producto_quantity{
+    display: flex;
+    gap: 10px;
+    margin-right: 39px;
+}
+.quantity_contenedor{
+    border: 1px solid rgb(55, 175, 135);
+    border-radius: 10px;
+    width: 80px;
+    height: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.quantity_contenedor span{
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+}
+.quantity_contenedor span.num{
+    border-left: 1px solid rgba(0,0,0,0.2);
+    border-right: 1px solid rgba(0,0,0,0.2);
+    height: 18px;
+    font-size: 14px;
+    pointer-events: none;
+}
+.producto_comprar button{
+    height: 35px;
+    width: 80px;
+    background-color: rgb(55, 175, 135);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Fuente3', sans-serif;
+    color: white;
+    cursor: pointer;
+}
+.iconos{
+    position: fixed;
+    bottom: 130px;
+    right: 15px;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+.icono_contenedor{
+    background-color: rgba(84, 211, 169,0.7);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shopping_list{
+    position: fixed;
+    height: calc(100vh - 300px);
+    width: 350px;
+    background-color: rgb(84, 211, 169);
+    bottom: 200px;
+    right: 0;
+    border-radius: 20px;
+    font-family: 'Fuente3', sans-serif;
+    color: white;
+    padding: 10px 10px 0 15px;
+    display: flex;
+    flex-direction: column;
+}
+.shopping_contenido{
+    height: 100%;
+    overflow: auto;
+}
+.shopping_contenido::-webkit-scrollbar{
+    background-color: transparent;
+    width: 6px;
+}
+.shopping_contenido::-webkit-scrollbar-thumb{
+    background-color: #d6d6d6;
+    border-radius: 5px;
+}
+.shopping_compra {
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(91, 184, 153);
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 7px;
+}
+
+
+.shopping_img {
+    height: 100%;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.shopping_img img{
+    height: 100%;
+    width: 100%;
+}
+.shopping_nameContenedor, .shopping_qtyContenedor{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+    height: 100%;
+
+}
+.shopping_nameContenedor p, .shopping_qtyContenedor p{
+    font-weight: 700;
+    color: rgb(63, 63, 63);
+    text-align: center;
+    
+}
+.shopping_compra span{
+    text-align: center;
+}
+
+.shopping_eliminar {
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shopping_eliminar:hover{
+    background-color: rgb(162, 228, 206);
+    cursor: pointer;
+}
+.shopping_button{
+    display: flex;
+    justify-content: center;
+}
+.botonComprar{
+    background-color: rgb(162, 228, 206);
+    height: 35px;
+    width: 80px;
+    font-family: 'Fuente3', sans-serif;
+    font-weight: 800;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-self: center;
+    border: 1.5px solid;
+}
+.botonComprar:hover{
+    background-color: rgb(114, 206, 175);
+    cursor: pointer;
+}
