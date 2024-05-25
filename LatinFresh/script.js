@@ -24,8 +24,32 @@ let vendedores = [
     {nombre: 'Pedro', ventas: undefined, valorVentas: undefined},
 ]
 
+function aleatorio1o2(){
+    return Math.floor(Math.random() * 2) + 1
+}
+let vendedorAleatorio = aleatorio1o2();
+asignarVendedor();
+function asignarVendedor(){
+    const vendedorIcono = document.querySelector('.vendedor_logo img'),
+    spanVendedor = document.getElementById('dialogo_vendedor');
 
-
+    if(vendedorAleatorio === 1){
+        vendedorIcono.src = 'images/female-avatar-girl-face-woman-user-4-svgrepo-com.svg';
+        vendedorIcono.alt = 'Vendedor: Juana';
+        spanVendedor.innerText = 'Juana';
+        console.log('Vendedor: Juana');
+    }else{
+        vendedorIcono.src = 'images/male-avatar-boy-face-man-user-7-svgrepo-com.svg';
+        vendedorIcono.alt = 'Vendedor: Pablo';
+        spanVendedor.innerText = 'Pablo';
+        console.log('Vendedor: Pablo');
+    }
+}
+const cambiarVendedorIcono = document.getElementById('iconoCambiarVendedor')
+cambiarVendedorIcono.addEventListener('click', function(){
+    vendedorAleatorio = (vendedorAleatorio === 1) ? 2 : 1;
+    asignarVendedor();
+})
 
 function generarNumero() {
     // Genera id de producto
@@ -81,7 +105,15 @@ for (let index = 0; index < catalogo.length; index++) {
 
 console.log(catalogo)
 
-
+const iconoCart = document.getElementById('iconoCart'),
+    shoppingList = document.querySelector('.shopping_list');
+iconoCart.addEventListener('click', function(){
+    if(shoppingList.classList.contains('hide')){
+        shoppingList.classList.remove('hide')
+    }else{
+        shoppingList.classList.add('hide')
+    }
+})
 
 
 const qtyCatalgo = {};
@@ -150,7 +182,30 @@ function minPlus(contenedor, qty, objeto){
     })
     
 }
+function eliminarProductoCart(contenedor, id){
+    const iconoEliminar = contenedor.querySelector('.shopping_eliminar');
+    iconoEliminar.addEventListener('click', function(){
+        contenedor.remove();
+        delete qtyCart[`CartList_${id}`]
+        iconoQtyCart('restar')
+        console.log(qtyCart)
+    })
+}
+function iconoQtyCart(tipo){
+    const iconoQtyCart = document.querySelector('.productosCart'),
+            spanIconoQtyCart = iconoQtyCart.querySelector('span');
 
+    if(tipo === 'sumar'){
+        iconoQtyCart.classList.remove('hide')
+        spanIconoQtyCart.innerText++
+    }else if(tipo === 'restar'){
+        spanIconoQtyCart.innerText--
+        if(spanIconoQtyCart.innerText == 0){
+            iconoQtyCart.classList.add('hide')
+            shoppingList.classList.add('hide')
+        }
+    }   
+}
 function encontrarProductoPorId(idBuscado, array) {
     // Devuelve el objeto del producto buscado dentro del array
     for (let i = 0; i < array.length; i++) {
@@ -208,10 +263,15 @@ function agregar(id, qty){
                 </div>
             </div>
         `);
-        // Una vez agregado el producto al shopping cart, se busca el div. Después se le pasa el div y la cantidad de producto agregada a la funcion minPlus
+
+        iconoQtyCart('sumar')
+        
         alreadyOnList = document.getElementById(`CartList_${id}`);
+        // Una vez agregado el producto al shopping cart, se busca el div. Y se le agregan sus respectivos eventlisteners al selector de qty y al icono de eliminar
+        eliminarProductoCart(alreadyOnList, id)
+
         minPlus(alreadyOnList, qty, qtyCart)
-    
+        console.log(qtyCart)
         }else{
             // Actualizar span con nueva cantidad agregada a producto
             const actualizarQtyCart = alreadyOnList.querySelector('span.num');
@@ -225,6 +285,7 @@ function agregar(id, qty){
         }
     }
 }
+
 
 
 

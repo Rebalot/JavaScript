@@ -72,6 +72,8 @@ main{
 }
 .contenido_general{
     width: 80%;
+    display: flex;
+    flex-direction: column;
 }
 h1{
     font-family: 'Fuente1', sans-serif;
@@ -95,6 +97,12 @@ h1{
     background-color: #53c599;
     border-radius: 50%;
     height: 100%;
+    padding: 8px 10px 15px 10px;
+    user-select: none;
+}
+.vendedor_logo img{
+    height: 100%;
+    width: 100%;
 }
 .dialogo{
     position: fixed;
@@ -102,7 +110,7 @@ h1{
     height: 160px;
     width: 200px;
     bottom: 75px;
-    right: 125px;
+    right: 130px;
     z-index: 999;
 }
 .dialogo_contenedor{
@@ -117,7 +125,7 @@ h1{
     font-family: 'Fuente2', sans-serif;
     font-weight: 500;
 }
-.latin_dialogo{
+.dialogo_latin{
     color: rgb(32, 153, 113);
 }
 .vendedor:hover + .dialogo{
@@ -128,9 +136,9 @@ h1{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
     margin-top: 30px;
+    margin-bottom: 30px;
     column-gap: 30px;
     row-gap: 30px;
-    justify-items: center;
 }
 .producto_contenedor{
     width: 288px;
@@ -198,7 +206,7 @@ h1{
     height: 60px;
     display: flex;
     justify-content: flex-end;
-    gap: 15px;
+    gap: 20px;
 }
 .icono_contenedor{
     background-color: rgba(84, 211, 169,0.7);
@@ -208,6 +216,22 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+.productosCart{
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: crimson;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    color: white;
+    font-family: 'Fuente3', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
 }
 .shopping_list{
     position: fixed;
@@ -222,6 +246,22 @@ h1{
     padding: 10px 10px 0 15px;
     display: flex;
     flex-direction: column;
+}
+.shopping_list:not(.hide) {
+    animation: appear 0.2s;
+}
+@keyframes appear{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 350px;;
+    }
+}
+
+.shopping_list h3{
+    overflow: hidden;
+    white-space: nowrap;
 }
 .shopping_contenido{
     height: 100%;
@@ -246,6 +286,7 @@ h1{
     align-items: center;
     font-size: 14px;
     margin-right: 7px;
+    
 }
 
 
@@ -308,4 +349,13 @@ h1{
 .botonComprar:hover{
     background-color: rgb(114, 206, 175);
     cursor: pointer;
+}
+.hide{
+    display: none !important;
+}
+
+@media screen and (max-width: 773px) {
+    .productos {
+        justify-items: center;
+    }
 }
