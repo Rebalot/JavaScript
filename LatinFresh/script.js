@@ -142,20 +142,22 @@ function minPlus(contenedor, qty, objeto){
 
 
     let quantity = qty;
+    const idProducto = Number(contenedor.id.substr(-5));
     // Actualizacion inicial al llamado de la funcion, del valor en objeto
-    objeto[contenedor.id] = quantity;
-    
+    objeto[idProducto] = quantity
+
     plus.addEventListener('click', ()=>{
         console.log('active plus contenedor: ', contenedor)
-        quantity = objeto[contenedor.id]
+        quantity = objeto[idProducto]
         if(quantity < 10){
             quantity++
             num.innerText = quantity;
             if(contenedor.classList.contains('producto_contenedor')){
-                objeto[contenedor.id] = quantity;
+                objeto[idProducto] = quantity;
             }else{
-                objeto[contenedor.id] = parseInt(num.innerText);
-                quantity = objeto[contenedor.id]
+                objeto[idProducto] = parseInt(num.innerText);
+                quantity = objeto[idProducto]
+                subtotal(idProducto)
             }
             console.log(objeto)
             
@@ -167,15 +169,16 @@ function minPlus(contenedor, qty, objeto){
     })
     minus.addEventListener('click', ()=>{
         console.log('active minus contenedor: ', contenedor)
-        quantity = objeto[contenedor.id]
+        quantity = objeto[idProducto]
         if(quantity > 0){
             quantity--
             num.innerText = quantity;
             if(contenedor.classList.contains('producto_contenedor')){
-                objeto[contenedor.id] = quantity;
+                objeto[idProducto] = quantity;
             }else{
-                objeto[contenedor.id] = parseInt(num.innerText);
-                quantity = objeto[contenedor.id]
+                objeto[idProducto] = parseInt(num.innerText);
+                quantity = objeto[idProducto]
+                subtotal(idProducto)
             }
             console.log(objeto)
         }
@@ -186,9 +189,11 @@ function eliminarProductoCart(contenedor, id){
     const iconoEliminar = contenedor.querySelector('.shopping_eliminar');
     iconoEliminar.addEventListener('click', function(){
         contenedor.remove();
-        delete qtyCart[`CartList_${id}`]
+        delete qtyCart[id]
+        delete subtotalPrecio[id]
         iconoQtyCart('restar')
-        console.log(qtyCart)
+        console.log('qtyCart: ', qtyCart)
+        console.log('subtotalPrecio: ', subtotalPrecio)
     })
 }
 function iconoQtyCart(tipo){
@@ -220,9 +225,9 @@ function agregar(id, qty){
     // Cuando uno hace click en el boton Agregar en algun producto del catalogo, esta función agrega el producto dentro del shopping cart
     const productoObjeto = encontrarProductoPorId(id, catalogo),
         shoppingDiv = document.querySelector('.shopping_contenido');
-        
+
     let alreadyOnList = document.getElementById(`CartList_${id}`),
-        valorQtyActual = qtyCart[`CartList_${id}`];
+        valorQtyActual = qtyCart[id];
 
 
     function actualizarValor(valorActual, cantidadAgregar){
@@ -271,7 +276,9 @@ function agregar(id, qty){
         eliminarProductoCart(alreadyOnList, id)
 
         minPlus(alreadyOnList, qty, qtyCart)
-        console.log(qtyCart)
+        console.log('qtyCart: ', qtyCart)
+
+        subtotal(id)
         }else{
             // Actualizar span con nueva cantidad agregada a producto
             const actualizarQtyCart = alreadyOnList.querySelector('span.num');
@@ -279,32 +286,56 @@ function agregar(id, qty){
             
             // Actualizar cantidad dentro del objeto. Se actualiza valor de clave.
             
-            qtyCart[`CartList_${id}`] = actualizarValor(valorQtyActual, qty);
+            qtyCart[id] = actualizarValor(valorQtyActual, qty);
 
             console.log(valorQtyActual, qty, qtyCart, 'agregar')
         }
     }
 }
 
+function encontrarPrecioPorId(idBuscado) {
+    for (let i = 0; i < catalogo.length; i++) {
+        if (catalogo[i].id === idBuscado) {
+            return catalogo[i].precio;
+        }
+    }
+    return null;
+}
 
+const subtotalPrecio = {}
+function subtotal(id){
 
-
-
-
-const Ventas = function(){
+    subtotalPrecio[id] = encontrarPrecioPorId(id)
+    subtotalPrecio[id] *= qtyCart[id]
     
+    console.log('subtotalPrecio: ', subtotalPrecio)
 }
 
-const agregarBotones = document.querySelectorAll('.producto_comprar button')
+function total(){
+    let sumatoria = 0;
 
-agregarBotones.forEach(boton => {
-    boton
-})
-
-
-function comprar(){
-    const contenedorId = `qty${contador++}`;
-    contenedor.id = contenedorId;
+    for (const producto in subtotalPrecio) {
+        sumatoria += subtotalPrecio[producto];
+    }
+    console.log('total: ', sumatoria)
+    return sumatoria;
 }
 
+const botonComprar = document.getElementById('botonComprar');
 
+botonComprar.addEventListener('click', comprarList)
+
+let noOrden = 0
+function comprarList(){
+    noOrden++
+    const orden = `Orden No. ${noOrden}`
+    total()
+    orden = new Venta(noOrden, )
+}
+
+class Venta {
+    constructor(noOrden, ) {
+        this.orden = noOrden;
+        this.next = null;
+    }
+}

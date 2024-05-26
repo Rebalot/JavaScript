@@ -200,13 +200,14 @@ h1{
 }
 .iconos{
     position: fixed;
-    bottom: 130px;
+    bottom: 139px;
+    height: 65px;
     right: 15px;
     width: 150px;
-    height: 60px;
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+
 }
 .icono_contenedor{
     background-color: rgba(84, 211, 169,0.7);
@@ -221,7 +222,7 @@ h1{
 .productosCart{
     position: absolute;
     top: 0;
-    left: 70px;
+    left: 60px;
     background-color: crimson;
     border-radius: 50%;
     height: 20px;
@@ -233,12 +234,31 @@ h1{
     justify-content: center;
     font-size: 14px;
 }
+#iconoCambiarVendedor{
+    margin-right: 7px;
+}
+.icono_info{
+    background-color: rgb(53, 114, 94);
+    color: white;
+    font-family: 'Fuente3', sans-serif;
+    font-size: 10px;
+    position: absolute;
+    width: 100px;
+    left: 41px;
+    top: 50px;
+    text-align: center;
+    display: none;
+    
+}
+#iconoCambiarVendedor:hover .icono_info {
+    display: block;
+}
 .shopping_list{
     position: fixed;
     height: calc(100vh - 300px);
     width: 350px;
     background-color: rgb(84, 211, 169);
-    bottom: 200px;
+    bottom: 215px;
     right: 0;
     border-radius: 20px;
     font-family: 'Fuente3', sans-serif;
@@ -334,7 +354,7 @@ h1{
     display: flex;
     justify-content: center;
 }
-.botonComprar{
+#botonComprar{
     background-color: rgb(162, 228, 206);
     height: 35px;
     width: 80px;
@@ -353,6 +373,7 @@ h1{
 .hide{
     display: none !important;
 }
+
 
 @media screen and (max-width: 773px) {
     .productos {
