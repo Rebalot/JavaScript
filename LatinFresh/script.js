@@ -37,12 +37,12 @@ function asignarVendedor(){
         vendedorIcono.src = 'images/female-avatar-girl-face-woman-user-4-svgrepo-com.svg';
         vendedorIcono.alt = 'Vendedor: Juana';
         spanVendedor.innerText = 'Juana';
-        console.log('Vendedor: Juana');
+        return 'Juana'
     }else{
         vendedorIcono.src = 'images/male-avatar-boy-face-man-user-7-svgrepo-com.svg';
         vendedorIcono.alt = 'Vendedor: Pablo';
         spanVendedor.innerText = 'Pablo';
-        console.log('Vendedor: Pablo');
+        return 'Pablo'
     }
 }
 const cambiarVendedorIcono = document.getElementById('iconoCambiarVendedor')
@@ -154,12 +154,14 @@ function minPlus(contenedor, qty, objeto){
             num.innerText = quantity;
             if(contenedor.classList.contains('producto_contenedor')){
                 objeto[idProducto] = quantity;
+                console.log('qtyCatalogo: ', qtyCatalgo)
             }else{
                 objeto[idProducto] = parseInt(num.innerText);
                 quantity = objeto[idProducto]
                 subtotal(idProducto)
+                console.log('qtyCart: ', qtyCart)
             }
-            console.log(objeto)
+            
             
         }else{
             alert('Cantidad de artículo excedida. Max: 10')
@@ -175,12 +177,13 @@ function minPlus(contenedor, qty, objeto){
             num.innerText = quantity;
             if(contenedor.classList.contains('producto_contenedor')){
                 objeto[idProducto] = quantity;
+                console.log('qtyCatalogo: ', qtyCatalgo)
             }else{
                 objeto[idProducto] = parseInt(num.innerText);
                 quantity = objeto[idProducto]
                 subtotal(idProducto)
+                console.log('qtyCart: ', qtyCart)
             }
-            console.log(objeto)
         }
     })
     
@@ -309,6 +312,7 @@ function subtotal(id){
     subtotalPrecio[id] *= qtyCart[id]
     
     console.log('subtotalPrecio: ', subtotalPrecio)
+    total();
 }
 
 function total(){
@@ -317,7 +321,7 @@ function total(){
     for (const producto in subtotalPrecio) {
         sumatoria += subtotalPrecio[producto];
     }
-    console.log('total: ', sumatoria)
+    console.log('totalPrecio: ', sumatoria)
     return sumatoria;
 }
 
@@ -326,16 +330,27 @@ const botonComprar = document.getElementById('botonComprar');
 botonComprar.addEventListener('click', comprarList)
 
 let noOrden = 0
+let ventasRegistradas = [];
 function comprarList(){
-    noOrden++
-    const orden = `Orden No. ${noOrden}`
-    total()
-    orden = new Venta(noOrden, )
+    let orden;
+    if(Object.keys(qtyCart).length !== 0){
+        noOrden++
+        orden = new Venta(noOrden, asignarVendedor(), qtyCart, subtotalPrecio, total())
+        ventasRegistradas.push(orden);
+        console.log(ventasRegistradas)
+        alert('Redirigiendo a método de pago...')
+    }else{
+        alert('No has agregado ningún artículo al carrito')
+    }
+    
 }
 
 class Venta {
-    constructor(noOrden, ) {
-        this.orden = noOrden;
-        this.next = null;
+    constructor(noOrden, vendedor, qtyCart, subtotal, total) {
+        this.noOrden = noOrden;
+        this.vendedor = vendedor;
+        this.qtyCart = { ...qtyCart };
+        this.subtotal = { ...subtotal };
+        this.total = total;
     }
 }

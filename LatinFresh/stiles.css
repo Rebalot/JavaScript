@@ -210,7 +210,7 @@ h1{
 
 }
 .icono_contenedor{
-    background-color: rgba(84, 211, 169,0.7);
+    background-color: rgb(94, 230, 184);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -238,7 +238,7 @@ h1{
     margin-right: 7px;
 }
 .icono_info{
-    background-color: rgb(53, 114, 94);
+    background-color: rgb(45, 153, 117);
     color: white;
     font-family: 'Fuente3', sans-serif;
     font-size: 10px;
@@ -366,7 +366,7 @@ h1{
     align-self: center;
     border: 1.5px solid;
 }
-.botonComprar:hover{
+#botonComprar:hover{
     background-color: rgb(114, 206, 175);
     cursor: pointer;
 }
