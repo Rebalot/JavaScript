@@ -20,8 +20,8 @@ const catalogo = [
     {producto: 'Frescura', precio: 150, img: 'images/frescura.jpg'},
 ]
 let vendedores = [
-    {nombre: 'Juana', ventas: undefined, valorVentas: undefined},
-    {nombre: 'Pedro', ventas: undefined, valorVentas: undefined},
+    {nombre: 'Juana', ventas: [], qtyProductos:{}, valorTotalVentas: 0, icono: 'images/female-avatar-girl-face-woman-user-4-svgrepo-com.svg'},
+    {nombre: 'Pedro', ventas: [], qtyProductos:{}, valorTotalVentas: 0, icono: 'images/male-avatar-boy-face-man-user-7-svgrepo-com.svg'},
 ]
 
 function aleatorio1o2(){
@@ -32,18 +32,13 @@ asignarVendedor();
 function asignarVendedor(){
     const vendedorIcono = document.querySelector('.vendedor_logo img'),
     spanVendedor = document.getElementById('dialogo_vendedor');
+    const vendedorActual = vendedores[vendedorAleatorio - 1]
 
-    if(vendedorAleatorio === 1){
-        vendedorIcono.src = 'images/female-avatar-girl-face-woman-user-4-svgrepo-com.svg';
-        vendedorIcono.alt = 'Vendedor: Juana';
-        spanVendedor.innerText = 'Juana';
-        return 'Juana'
-    }else{
-        vendedorIcono.src = 'images/male-avatar-boy-face-man-user-7-svgrepo-com.svg';
-        vendedorIcono.alt = 'Vendedor: Pablo';
-        spanVendedor.innerText = 'Pablo';
-        return 'Pablo'
-    }
+        vendedorIcono.src = vendedorActual.icono;
+        vendedorIcono.alt = `Vendedor: ${vendedorActual.nombre}`;
+        spanVendedor.innerText = vendedorActual.nombre;
+        return vendedorActual.nombre
+
 }
 const cambiarVendedorIcono = document.getElementById('iconoCambiarVendedor')
 cambiarVendedorIcono.addEventListener('click', function(){
@@ -332,13 +327,21 @@ botonComprar.addEventListener('click', comprarList)
 let noOrden = 0
 let ventasRegistradas = [];
 function comprarList(){
-    let orden;
     if(Object.keys(qtyCart).length !== 0){
         noOrden++
-        orden = new Venta(noOrden, asignarVendedor(), qtyCart, subtotalPrecio, total())
-        ventasRegistradas.push(orden);
+        const orden = new Venta(noOrden, asignarVendedor(), qtyCart, subtotalPrecio, total())
+        ventasRegistradas.push({...orden});
         console.log(ventasRegistradas)
-        alert('Redirigiendo a método de pago...')
+        delete orden.vendedor;
+        for (let index = 0; index < vendedores.length; index++) {
+            if(vendedores[index].nombre === asignarVendedor()){
+                vendedores[index].ventas.push({...orden})
+                // console.log(vendedores[index].ventas)
+                actualizarVendedor(vendedores[index])
+                break;
+            }
+        }
+        alert('Gracias por tu compra!')
     }else{
         alert('No has agregado ningún artículo al carrito')
     }
@@ -349,8 +352,90 @@ class Venta {
     constructor(noOrden, vendedor, qtyCart, subtotal, total) {
         this.noOrden = noOrden;
         this.vendedor = vendedor;
-        this.qtyCart = { ...qtyCart };
-        this.subtotal = { ...subtotal };
+        this.qtyCart = { ...qtyCart};
+        this.subtotal = { ...subtotal};
         this.total = total;
     }
+}
+
+function actualizarVendedor(vendedorObjeto){
+
+    let qtyProductos = {},
+        valorVentas = 0;
+
+    vendedorObjeto.ventas.forEach(venta => {
+        //venta es cada objeto dentro de ventas (cada uno compuesto de las propiedades de la funcion constructora Venta, a excepeción de la propiedad vendedor, la cual se eliminó para este caso)
+        for (let key in venta.qtyCart) {
+            if (qtyProductos.hasOwnProperty(key)) {
+                // Si la clave ya existe en qtyProductos, suma los valores
+                qtyProductos[key] += venta.qtyCart[key];
+            } else {
+                // Si la clave no existe en qtyProductos, simplemente agrega la clave y el valor
+                qtyProductos[key] = venta.qtyCart[key];
+            }
+        }
+        valorVentas += venta.total
+    });
+
+    // Asignar qtyProductos actualizado al objeto vendedor
+    vendedorObjeto.qtyProductos = qtyProductos;
+    vendedorObjeto.valorTotalVentas = valorVentas
+    console.log(vendedores)
+}
+function mostrarEmpleadoDelMes(){
+    const window = document.getElementById('empleadoDelMes_contenedor'),
+        empleadoDelMesSpan = document.getElementById('empleadoDelMes_nombre'),
+        articulosListado = document.querySelector('.articulos_nombre'),
+        articulosQty = document.querySelector('.articulos_qty'),
+        totalVendidoSpan = document.getElementById('totalVendido');
+
+    window.style.display = 'flex'
+
+    let todasLasValorVentasSonCero = vendedores.every(vendedor => vendedor.valorTotalVentas === 0);
+
+    if (!todasLasValorVentasSonCero) {
+        //Para obtener el objeto del vendedor con más ganancias totales, dentro de vendedores
+        let mayorTotalVentas = vendedores[0];
+
+        for (let i = 0; i < vendedores.length; i++) {
+            
+            if (vendedores[i].valorTotalVentas > mayorTotalVentas.valorTotalVentas) {
+                mayorTotalVentas = vendedores[i];
+            }
+        }
+        console.log(mayorTotalVentas)
+        empleadoDelMesSpan.innerText = mayorTotalVentas.nombre;
+
+        let productosVendidos = {}
+        for (let idProducto in mayorTotalVentas.qtyProductos) {
+            // Producto se refiere al objeto dentro del array Catalogo. El cual será el que coincida el valor del ID con la clave actual dentro del objeto qtyProductos
+            const productoEncontrado = catalogo.find(producto => producto.id == idProducto);
+            if (productoEncontrado) {
+                
+                // Si se encuentra el producto, agregar su nombre y valor al array
+                productosVendidos[productoEncontrado.producto] = mayorTotalVentas.qtyProductos[idProducto];
+            }
+        }
+        console.log(productosVendidos)
+
+        let listadoContenido = '';
+        let qtyContenido = '';
+
+        Object.entries(productosVendidos).forEach(([clave, valor]) => {
+            listadoContenido += `<span class="producto_nombre">${clave}</span>`;
+            qtyContenido += `<span class="producto_qty">${valor}</span>`;
+        });
+
+        articulosListado.innerHTML = listadoContenido;
+        articulosQty.innerHTML = qtyContenido;
+
+        totalVendidoSpan.innerText = '$' + mayorTotalVentas.valorTotalVentas
+    }else{
+        empleadoDelMesSpan.innerText = '---';
+    }
+}
+function cerrarEmpleadoDelMes(){
+    const window = document.getElementById('empleadoDelMes_contenedor')
+    window.style.display = 'none'
+
 }
