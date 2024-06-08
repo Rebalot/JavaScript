@@ -1,0 +1,8 @@
+.imgContenedor{
+    max-width: 200px;
+    max-height: 200px;
+}
+.imgContenedor img{
+    width: 100%;
+    height: 100%;
+}
